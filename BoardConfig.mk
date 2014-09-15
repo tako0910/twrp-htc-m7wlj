@@ -1,10 +1,10 @@
 USE_CAMERA_STUB := true
 
 # inherit from the proprietary version
--include vendor/htc/m7/BoardConfigVendor.mk
+-include vendor/htc/m7wlj/BoardConfigVendor.mk
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := m7
+TARGET_BOOTLOADER_BOARD_NAME := m7wlj
 TARGET_NO_BOOTLOADER := true
 
 # Platform
@@ -24,7 +24,7 @@ BOARD_KERNEL_BASE := 0x80600000
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01800000
-TARGET_KERNEL_CONFIG := m7_defconfig
+TARGET_KERNEL_CONFIG := m7wlj_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 
 # QCOM hardware
@@ -43,7 +43,7 @@ USE_OPENGL_RENDERER := true
 TARGET_DISPLAY_USE_RETIRE_FENCE := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
-BOARD_EGL_CFG := device/htc/m7wlv/configs/egl.cfg
+BOARD_EGL_CFG := device/htc/m7wljwlv/configs/egl.cfg
 
 # Power
 TARGET_POWERHAL_VARIANT := cm
@@ -67,7 +67,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/htc/m7/sepolicy
+BOARD_SEPOLICY_DIRS += device/htc/m7wlj/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     app.te \
