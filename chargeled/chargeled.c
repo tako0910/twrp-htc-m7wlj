@@ -31,15 +31,7 @@
 #define POWER_SUPPLY_SUBSYSTEM "SUBSYSTEM=power_supply"
 
 #define BATTERY_STATUS_FILE "/sys/class/power_supply/battery/status"
-#if defined(HTC_DLXJ) || defined(HTC_M7WLJ)
 #define JPN_LED "/sys/class/leds/indicator/ModeRGB"
-#else
-#define AMBER_LED "/sys/class/leds/amber/brightness"
-#define GREEN_LED "/sys/class/leds/green/brightness"
-
-#define LED_OFF "0"
-#define LED_ON "1"
-#endif
 
 #define STR_BUF_SIZE 128
 #define UEVENT_BUF_SIZE 64*1024
@@ -140,7 +132,6 @@ static int get_charging_status() {
     return ret;
 }
 
-#if defined(HTC_DLXJ) || defined(HTC_M7WLJ)
 static void update_led_jpn(int charge_status) {
     KLOG_INFO(LOG_TAG, "%s: setting charging status '%d'\n",
             __func__, charge_status);
@@ -158,46 +149,6 @@ static void update_led_jpn(int charge_status) {
     }
 
 }
-#else
-static void update_led(int charge_status) {
-    FILE *aled, *gled;
-    aled = fopen(AMBER_LED, "w");
-    if (!aled) {
-        KLOG_ERROR(LOG_TAG, "%s: could not open amber LED: %s\n",
-            __func__, AMBER_LED);
-        return;
-    } else {
-        gled = fopen(GREEN_LED, "w");
-        if (!gled) {
-            fclose(aled);
-            KLOG_ERROR(LOG_TAG, "%s: could not open green LED: %s\n",
-                __func__, GREEN_LED);
-            return;
-        }
-    }
-
-    KLOG_INFO(LOG_TAG, "%s: setting charging status '%d'\n",
-            __func__, charge_status);
-
-    switch (charge_status) {
-        case BATTERY_STATUS_CHARGING:
-            fputs(LED_ON, aled);
-            fputs(LED_OFF, gled);
-            break;
-        case BATTERY_STATUS_FULL:
-            fputs(LED_OFF, aled);
-            fputs(LED_ON, gled);
-            break;
-        default:
-            fputs(LED_OFF, aled);
-            fputs(LED_OFF, gled);
-            break;
-    }
-
-    fclose(aled);
-    fclose(gled);
-}
-#endif
 
 static void chargeled_update() {
     static int last_charge_status = BATTERY_STATUS_UNKNOWN;
@@ -208,11 +159,7 @@ static void chargeled_update() {
         return;
 
     last_charge_status = charge_status;
-#if defined(HTC_DLXJ) || defined(HTC_M7WLJ)
     update_led_jpn(charge_status);
-#else
-    update_led(charge_status);
-#endif
 }
 
 static int uevent_init() {
