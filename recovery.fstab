@@ -6,5 +6,8 @@
 /misc           emmc        /dev/block/platform/msm_sdcc.1/by-name/misc
 /recovery       emmc        /dev/block/platform/msm_sdcc.1/by-name/recovery
 /system         ext4        /dev/block/platform/msm_sdcc.1/by-name/system
+# external volumes
+/external_sd    auto        /dev/block/mmcblk1p1    /dev/block/mmcblk1       flags=display="Micro SDcard";storage;wipeingui;removable
+
 # storage volumes
 /usb-otg        auto        /dev/block/sda1  /dev/block/sda                  flags=display="USB OTG";storage;wipeingui;removable
