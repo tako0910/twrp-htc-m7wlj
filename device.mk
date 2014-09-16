@@ -17,22 +17,18 @@ endif
 COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/recovery/lpm.rc:recovery/root/lpm.rc \
-    $(LOCAL_PATH)/recovery/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
-    $(LOCAL_PATH)/recovery/charger:recovery/root/sbin/charger \
-    $(LOCAL_PATH)/recovery/choice_fn:recovery/root/sbin/choice_fn \
-    $(LOCAL_PATH)/recovery/offmode_charging:recovery/root/sbin/offmode_charging \
-    $(LOCAL_PATH)/recovery/fstab.qcom:recovery/root/fstab.qcom \
-    $(LOCAL_PATH)/recovery/images/battery_0.png:recovery/root/res/images/charger/battery_0.png \
-    $(LOCAL_PATH)/recovery/images/battery_1.png:recovery/root/res/images/charger/battery_1.png \
-    $(LOCAL_PATH)/recovery/images/battery_2.png:recovery/root/res/images/charger/battery_2.png \
-    $(LOCAL_PATH)/recovery/images/battery_3.png:recovery/root/res/images/charger/battery_3.png \
-    $(LOCAL_PATH)/recovery/images/battery_4.png:recovery/root/res/images/charger/battery_4.png \
-    $(LOCAL_PATH)/recovery/images/battery_fail.png:recovery/root/res/images/charger/battery_fail.png \
-    $(LOCAL_PATH)/recovery/images/battery_full.png:recovery/root/res/images/charger/battery_full.png
+    $(LOCAL_PATH)/recovery/etc/fstab.qcom:recovery/root/fstab.qcom \
+    $(LOCAL_PATH)/recovery/etc/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
+    $(LOCAL_PATH)/recovery/etc/lpm.rc:recovery/root/lpm.rc \
+    $(LOCAL_PATH)/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
+    $(LOCAL_PATH)/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
+    $(LOCAL_PATH)/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
+    $(LOCAL_PATH)/recovery/sbin/power_test:recovery/root/sbin/power_test
 
 PRODUCT_PACKAGES += \
-    chargeled
+    chargeled \
+    offmode_charging_res_images \
+    offmode_charging_warn_res_images
 
 $(call inherit-product, build/target/product/full.mk)
 
