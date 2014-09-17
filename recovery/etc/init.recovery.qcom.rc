@@ -23,13 +23,16 @@ on boot
     start choice_fn
     start chargeled
 
-service charger /sbin/charger
-    disabled
-
 service choice_fn /sbin/choice_fn
     disabled
 
+service power_test /sbin/power_test
+    disabled
+
 service offmode_charging /sbin/offmode_charging
+    disabled
+
+service detect_key /sbin/detect_key
     disabled
 
 service chargeled /sbin/chargeled
