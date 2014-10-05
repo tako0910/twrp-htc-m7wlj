@@ -110,3 +110,13 @@ TW_HTC_LED := true
 BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
 RECOVERY_VARIANT := twrp
 
+#MultiROM config. MultiROM also uses parts of TWRP config
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/htc/m7wlj/mr_init_devices.c
+MR_DPI := xhdpi
+MR_FSTAB := device/htc/m7wlj/recovery.fstab
+MR_USE_MROM_FSTAB := true
+MR_DEVICE_HOOKS := device/htc/m7wlj/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 3
+MR_KEXEC_MEM_MIN := 0x85000000
+MR_DPI_FONT := 96 # 340
