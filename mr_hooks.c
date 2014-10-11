@@ -17,7 +17,7 @@
  
 int mrom_hook_after_android_mounts(const char *busybox_path, const char *base_path, int type)
 {
-    // On M8, this fstab file is used to remount system to RO,
+    // On M7, this fstab file is used to remount system to RO,
     // but with MultiROM, it remounts everything as RO, even /data and /cache
     if(access("/remount.qcom", F_OK) >= 0)
         remove("/remount.qcom");
@@ -142,7 +142,7 @@ static int wait_for_file(const char *filename, int timeout)
 static void wait_for_mmc(void)
 {
     // boot
-    const char *filename = "/sys/devices/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p42/uevent";
+    const char *filename = "/sys/devices/msm_sdcc.1/mmc_host/mmc1/mmc1:0001/block/mmcblk0/mmcblk0p19/uevent";
     int ret;
  
     INFO("Waiting for file %s\n", filename);
@@ -160,8 +160,15 @@ static void wait_for_mmc(void)
  
 void tramp_hook_before_device_init(void)
 {
-    // Some hammerhead kernels are too fast and mmcblk initialization
+    // Some M7 kernels are too fast and mmcblk initialization
     // occurs a bit too late, wait for it.
     wait_for_mmc();
 }
 #endif /* MR_DEVICE_HOOKS >= 3 */
+
+#if MR_DEVICE_HOOKS >= 4
+int mrom_hook_allow_incomplete_fstab(void)
+{
+    return 1;
+}
+#endif /* MR_DEVICE_HOOKS >= 4 */
