@@ -116,6 +116,6 @@ MR_DPI := xhdpi
 MR_FSTAB := device/htc/m7wlj/recovery.fstab
 MR_USE_MROM_FSTAB := true
 MR_DEVICE_HOOKS := device/htc/m7wlj/mr_hooks.c
-MR_DEVICE_HOOKS_VER := 3
+MR_DEVICE_HOOKS_VER := 4
 MR_KEXEC_MEM_MIN := 0x85000000
 MR_DPI_FONT := 96 # 340
