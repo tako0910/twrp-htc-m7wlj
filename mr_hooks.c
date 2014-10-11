@@ -142,7 +142,7 @@ static int wait_for_file(const char *filename, int timeout)
 static void wait_for_mmc(void)
 {
     // boot
-    const char *filename = "/sys/devices/msm_sdcc.1/mmc_host/mmc1/mmc1:0001/block/mmcblk0/mmcblk0p19/uevent";
+    const char *filename = "/sys/devices/platform/msm_sdcc.1/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p19/uevent";
     int ret;
  
     INFO("Waiting for file %s\n", filename);
