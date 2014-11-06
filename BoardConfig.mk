@@ -108,6 +108,7 @@ TW_INCLUDE_JB_CRYPTO := true
 TW_NO_USB_STORAGE := false
 BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
 RECOVERY_VARIANT := twrp
+TARGET_RECOVERY_DEVICE_MODULES := chargeled
 
 #MultiROM config. MultiROM also uses parts of TWRP config
 MR_INPUT_TYPE := type_b
