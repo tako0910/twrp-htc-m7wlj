@@ -157,12 +157,34 @@ static void wait_for_mmc(void)
         ERROR("Timeout while waiting for %s!\n", filename);
     }
 }
- 
+
+static void wait_for_sd(void)
+{   
+    // microSD
+    const char *filename = "/sys/devices/platform/msm_sdcc.4/mmc_host/mmc2/mmc2:1234/block/mmcblk1/uevent";
+    int ret;
+    
+    INFO("Waiting for file %s\n", filename);
+    ret = wait_for_file(filename, 5);
+    if(ret > 0)
+    {   
+        // had to wait, make sure the init is complete
+        usleep(100000);
+    }
+    else if(ret < 0)
+    {   
+        ERROR("Timeout while waiting for %s!\n", filename);
+    }
+}
+
 void tramp_hook_before_device_init(void)
 {
     // Some M7 kernels are too fast and mmcblk initialization
     // occurs a bit too late, wait for it.
     wait_for_mmc();
+
+    // wait microSD
+    wait_for_sd();
 }
 #endif /* MR_DEVICE_HOOKS >= 3 */
 
