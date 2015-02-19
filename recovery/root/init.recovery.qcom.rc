@@ -1,7 +1,4 @@
 on boot
-    setprop usb.vendor 0bb4
-    setprop usb.product.adb 0c02
-    setprop usb.product.mtpadb 0f87
     write /sys/module/rpm_resources/enable_low_power/L2_cache 1
     write /sys/module/rpm_resources/enable_low_power/pxo 1
     write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
@@ -15,9 +12,19 @@ on boot
     write /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 384000
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_min_freq 384000
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 0bb4
+    write /sys/class/android_usb/android0/idProduct 0c02
+    setprop usb.vendor 0bb4
+    setprop usb.product.adb 0c02
+    setprop usb.product.mtpadb 0f87
     setprop recovery.perf.mode 0
-    start choice_fn
     start chargeled
+
+on charger
+    start choice_fn
+    start detect_key
+    start offmode_charging
 
 on property:recovery.perf.mode=0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "ondemand"
@@ -37,17 +44,25 @@ on property:recovery.perf.mode=1
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "performance"
     write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor "performance"
 
+service chargeled /sbin/chargeled
+    disabled
+    seclabel u:r:healthd:s0
+
 service choice_fn /sbin/choice_fn
     disabled
-
-service power_test /sbin/power_test
-    disabled
-
-service offmode_charging /sbin/offmode_charging
-    disabled
+    oneshot
+    seclabel u:r:recovery:s0
 
 service detect_key /sbin/detect_key
     disabled
+    oneshot
+    seclabel u:r:healthd:s0
 
-service chargeled /sbin/chargeled
+service offmode_charging /sbin/offmode_charging
     disabled
+    seclabel u:r:healthd:s0
+
+service power_test /sbin/power_test
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
