@@ -89,7 +89,7 @@ BOARD_SEPOLICY_UNION += \
     cir_fw_update.te
 
 # TWRP
-DEVICE_RESOLUTION := 1080x1920
+TW_THEME := portrait_hdpi
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
