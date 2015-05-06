@@ -1,12 +1,18 @@
 # mount point   fstype      device  [device2]                                [parameters]
-/boot           emmc        /dev/block/platform/msm_sdcc.1/by-name/boot
-/cache          ext4        /dev/block/platform/msm_sdcc.1/by-name/cache
-/data           ext4        /dev/block/platform/msm_sdcc.1/by-name/userdata  flags=encryptable=/dev/block/platform/msm_sdcc.1/by-name/extra
-/devlog         ext4        /dev/block/platform/msm_sdcc.1/by-name/devlog
-/misc           emmc        /dev/block/platform/msm_sdcc.1/by-name/misc
-/recovery       emmc        /dev/block/platform/msm_sdcc.1/by-name/recovery
-/system         ext4        /dev/block/platform/msm_sdcc.1/by-name/system
-
+#/boot           emmc        /dev/block/platform/msm_sdcc.1/by-name/boot
+#/cache          ext4        /dev/block/platform/msm_sdcc.1/by-name/cache
+#/data           ext4        /dev/block/platform/msm_sdcc.1/by-name/userdata
+#/devlog         ext4        /dev/block/platform/msm_sdcc.1/by-name/devlog
+#/misc           emmc        /dev/block/platform/msm_sdcc.1/by-name/misc
+#/recovery       emmc        /dev/block/platform/msm_sdcc.1/by-name/recovery
+#/system         ext4        /dev/block/platform/msm_sdcc.1/by-name/system
+/boot		    emmc		/dev/block/mmcblk0p36
+/cache		    ext4		/dev/block/mmcblk0p39
+/data		    ext4		/dev/block/mmcblk0p40
+/misc		    emmc		/dev/block/mmcblk0p19
+/recovery	    emmc		/dev/block/mmcblk0p37
+/system		    ext4		/dev/block/mmcblk0p38
+/devlog 	    ext4		/dev/block/mmcblk0p22
 # external volumes
 /external_sd    auto        /dev/block/mmcblk1p1    /dev/block/mmcblk1       flags=display="Micro SDcard";storage;wipeingui;removable
 
