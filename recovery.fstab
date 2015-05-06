@@ -8,7 +8,7 @@
 #/system         ext4        /dev/block/platform/msm_sdcc.1/by-name/system
 /boot		    emmc		/dev/block/mmcblk0p36
 /cache		    ext4		/dev/block/mmcblk0p39
-/data		    ext4		/dev/block/mmcblk0p40
+/data		    ext4		/dev/block/mmcblk0p40                flags=encryptable=/dev/block/mmcblk0p27
 /misc		    emmc		/dev/block/mmcblk0p19
 /recovery	    emmc		/dev/block/mmcblk0p37
 /system		    ext4		/dev/block/mmcblk0p38
